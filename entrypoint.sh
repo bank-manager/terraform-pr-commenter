@@ -175,7 +175,7 @@ fi
 if [[ $COMMAND == 'plan' ]]; then
   # Look for an existing plan PR comment and delete
   echo -e "\033[34;1mINFO:\033[0m Looking for an existing plan PR comment."
-  PR_COMMENT_ID=$(curl -sS -H "$AUTH_HEADER" -H "$ACCEPT_HEADER" -L "$PR_COMMENTS_URL" | jq '.[] | select(.body|test ("### Terraform `plan` .* for  Instance: `'"$BM_TF_INSTANCE"'` in Workspace: `'"$WORKSPACE"'`")) | .id')
+  PR_COMMENT_ID=$(curl -sS -H "$AUTH_HEADER" -H "$ACCEPT_HEADER" -L "$PR_COMMENTS_URL" | jq '.[] | select(.body|test ("### Terraform `plan` .* for Instance: `'"$BM_TF_INSTANCE"'` in Workspace: `'"$WORKSPACE"'`")) | .id')
   if [ "$PR_COMMENT_ID" ]; then
     echo -e "\033[34;1mINFO:\033[0m Found existing plan PR comment: $PR_COMMENT_ID. Deleting."
     PR_COMMENT_URL="$PR_COMMENT_URI/$PR_COMMENT_ID"
